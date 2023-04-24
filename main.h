@@ -29,4 +29,5 @@ int handle_buffer(char *buffer, int *buff_ind);
 int print_character(va_list argList, char *buffer, int buff_ind);
 int print_string(va_list argList, char *buffer, int buff_ind);
 int print_percent(va_list argList, char *buffer, int buff_ind);
+
 #endif

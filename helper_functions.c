@@ -48,6 +48,12 @@ int handle_char(char *buffer, int buff_ind, char c, int *count)
 {
 	buffer[buff_ind++] = c;
 	*count += 1;
+
+	if (buff_ind >= BUFFER_SIZE - 1)
+	{
+		handle_buffer(buffer, &buff_ind);
+	}
+
 	return (buff_ind);
 }
 /**
@@ -58,10 +64,13 @@ int handle_char(char *buffer, int buff_ind, char c, int *count)
  */
 int handle_buffer(char *buffer, int *buff_ind)
 {
-	int count;
+	int count = *buff_ind;
 
-	write(1, buffer, *buff_ind);
+	if (count > 0)
+	{
+	write(1, buffer, count);
 	count = *buff_ind;
 	*buff_ind = 0;
+	}
 	return (count);
 }
