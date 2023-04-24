@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdarg.h>
-#define BUFFER_SIZE 1024
 
 /**
  * struct conv_spec - Struct  to handle specifiers
@@ -19,13 +18,10 @@ typedef struct conv_spec
 } conv_spec;
 
 int _printf(const char *format, ...);
-
 int handle_specifier(va_list argList, char *buffer, int buff_ind,
 		conv_spec *spec_arr, char specifier, int *count);
 int handle_char(char *buffer, int buff_ind, char c, int *count);
 int handle_buffer(char *buffer, int *buff_ind);
-
-
 int print_character(va_list argList, char *buffer, int buff_ind);
 int print_string(va_list argList, char *buffer, int buff_ind);
 int print_percent(va_list argList, char *buffer, int buff_ind);

@@ -33,7 +33,7 @@ int print_string(va_list argList, char *buffer, int buff_ind)
 	while (string[i])
 	{
 		buffer[buff_ind++] = string[i];
-		if (buff_ind >= BUFFER_SIZE - 1)
+		if (buff_ind >= 1023)
 		{
 			handle_buffer(buffer, &buff_ind);
 		}
@@ -53,7 +53,7 @@ int print_percent(va_list argList, char *buffer, int buff_ind)
 {
 	(void) argList;
 	buffer[buff_ind] = '%';
-	if (buff_ind >= BUFFER_SIZE - 1)
+	if (buff_ind >= 1023)
 	{
 		handle_buffer(buffer, &buff_ind);
 	}

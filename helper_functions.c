@@ -21,7 +21,7 @@ int handle_specifier(va_list argList, char *buffer, int buff_ind,
 		if (spec_arr[j].specifier == specifier)
 		{
 			buff_ind = spec_arr[j].print_spec(argList, buffer, buff_ind);
-			if (buff_ind >= BUFFER_SIZE - 1)
+			if (buff_ind >= 1023)
 				*count += handle_buffer(buffer, &buff_ind);
 			break;
 		}
@@ -30,7 +30,7 @@ int handle_specifier(va_list argList, char *buffer, int buff_ind,
 	{
 		buff_ind = handle_char(buffer, buff_ind, '%', count);
 		buff_ind = handle_char(buffer, buff_ind, specifier, count);
-		if (buff_ind >= BUFFER_SIZE - 1)
+		if (buff_ind >= 1023)
 			*count += handle_buffer(buffer, &buff_ind);
 	}
 	return (buff_ind);
@@ -49,7 +49,7 @@ int handle_char(char *buffer, int buff_ind, char c, int *count)
 	buffer[buff_ind++] = c;
 	*count += 1;
 
-	if (buff_ind >= BUFFER_SIZE - 1)
+	if (buff_ind >= 1023)
 	{
 		handle_buffer(buffer, &buff_ind);
 	}
