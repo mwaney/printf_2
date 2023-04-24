@@ -17,6 +17,10 @@ int _printf(const char *format, ...)
 		{'\0', NULL}
 	};
 
+	for (j = 0; j < 1024; j++)
+		buffer[j] = 0;
+	if (!format)
+		return (-1);
 	va_start(argList, format);
 	for (i = 0; format && format[i]; i++)
 	{

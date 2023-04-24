@@ -7,9 +7,10 @@ int reverse_buffer(char *buffer, int start, int end);
  * @buff_ind: current index of buffer
  * Return: index of buffer
  */
-int print_character (va_list argList, char *buffer, int buff_ind)
+int print_character(va_list argList, char *buffer, int buff_ind)
 {
 	char c = va_arg(argList, int);
+
 	buffer[buff_ind] = c;
 	return (buff_ind + 1);
 }

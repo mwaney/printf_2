@@ -14,7 +14,7 @@ int handle_specifier(va_list argList, char *buffer, int buff_ind,
 			if (buff_ind >= BUFFER_SIZE - 1)
 				*count += handle_buffer(buffer, &buff_ind);
 			break;
-		}	
+	}
 	}
 	if (spec_arr[j].specifier == '\0')
 	{

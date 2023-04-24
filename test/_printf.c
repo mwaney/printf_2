@@ -8,15 +8,19 @@
 int _printf(const char *format, ...)
 {
 	va_list argList;
-	int count = 0, buff_ind = 0, i;
-	char buffer[BUFFER_SIZE];
-	conv_spec spec_arr[] = 
-	{
+	int count = 0, buff_ind = 0, i, j;
+	char buffer[1024];
+	conv_spec spec_arr[] = {
 		{'c', print_character},
 		{'s', print_string},
 		{'%', print_percent},
 		{'\0', NULL}
 	};
+
+	for (j = 0; j < 1024; j++)
+		buffer[j] = 0;
+	if (!format)
+		return (-1);
 
 	va_start(argList, format);
 	for (i = 0; format && format[i]; i++)
