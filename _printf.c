@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 {
 	va_list argList;
 	int count = 0, buff_ind = 0, i;
-	char *buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	char *buffer = malloc(sizeof(char) * 1024);
 	conv_spec spec_arr[] = {
 		{'c', print_character},
 		{'s', print_string},
@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 		{'\0', NULL}
 	};
 
-	if (!format)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 	{
 		free(buffer);
 		return (-1);
