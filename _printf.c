@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
 {
 	va_list argList;
 	int count = 0, buff_ind = 0, i;
-	char buffer[BUFFER_SIZE];
+	char *buffer = malloc(sizeof(char) * BUFFER_SIZE);
 	conv_spec spec_arr[] = {
 		{'c', print_character},
 		{'s', print_string},
@@ -17,10 +17,11 @@ int _printf(const char *format, ...)
 		{'\0', NULL}
 	};
 
-	for (j = 0; j < 1024; j++)
-		buffer[j] = 0;
 	if (!format)
+	{
+		free(buffer);
 		return (-1);
+	}
 	va_start(argList, format);
 	for (i = 0; format && format[i]; i++)
 	{
@@ -28,7 +29,10 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '\0')
+			{
+				free(buffer);
 				return (-1);
+			}
 			buff_ind = handle_specifier(argList, buffer, buff_ind, spec_arr,
 					format[i], &count);
 		}
@@ -39,5 +43,6 @@ int _printf(const char *format, ...)
 	}
 	count += handle_buffer(buffer, &buff_ind);
 	va_end(argList);
+	free(buffer);
 	return (count);
 }
